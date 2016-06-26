@@ -1,0 +1,59 @@
+
+package twitter4j.examples.oauth;
+
+import java.util.List;
+
+import twitter4j.Logger;
+import twitter4j.Paging;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+
+/**
+ * @author Kuldeep Singh
+ *
+ */
+public final class Test {
+	private static Logger log = Logger.getLogger(Test.class);
+	private static int numOfPages = 10;
+
+	public static void main(String[] args) {
+
+		Twitter twitter = new TwitterFactory().getInstance();
+
+		int i =1;
+		int count = 0;
+		for(int page =1; page <= numOfPages ; page++){
+			List<Status> allStatus = null;
+			try {
+				allStatus = twitter.getUserTimeline("ArvindKejriwal",new Paging(page, 25));
+			} 
+			catch (TwitterException e) {
+				log.error("Error occured while fetching the tweets of a user..");
+				e.printStackTrace();
+			}
+			if(allStatus != null){
+				for(Status status : allStatus){
+					count = count +1;
+					if(status.getText().contains("Modi") || status.getText().contains("BJP") || status.getText().contains("Center")
+							|| status.getText().contains("PMO")){
+						i++ ;
+					}
+
+				}
+
+				
+			}
+			else{
+				log.error("Somthing bad happened ..check the logs for more details..");
+			}
+
+			
+		}
+		
+		//System.out.println("No. of tweets done by Kejriwal :" + count);
+		//System.out.println("No. of tweets in which he mentioned Modi or BJP or Center :" + i);
+
+	}
+}

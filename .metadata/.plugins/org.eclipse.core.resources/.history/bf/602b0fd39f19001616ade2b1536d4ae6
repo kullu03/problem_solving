@@ -1,0 +1,11 @@
+package com.corejava.practice;
+
+public class MemberInnerClassOuter {
+	
+	public class MemberInnerClassInner {
+		
+
+	}
+	
+
+}

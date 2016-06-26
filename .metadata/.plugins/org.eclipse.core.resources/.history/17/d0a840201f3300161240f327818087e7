@@ -1,0 +1,12 @@
+package com.practice.design.patterens.factory;
+
+public class PizzaStoreApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		PizzaStore store = new PizzaStore();
+		store.orderPizza("Veg");
+
+	}
+
+}

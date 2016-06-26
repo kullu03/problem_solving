@@ -1,0 +1,24 @@
+package com.intw.practice.array;
+
+public class MaximumSubMatrix {
+
+	public static void main(String[] args) {
+		int  [] [] inp = {
+				   {0,1,1,0,1}, 
+				   {1,1,0,1,0}, 
+				   {0,1,1,1, 0},
+				   {1,1,1,1,0},
+				   {1,1,1,1,1},
+				   {0,0,0,0,0}
+				   };
+		int ret [] [] = getMaxMatrix(inp);
+		
+
+	}
+
+	private static int[][] getMaxMatrix(int[][] inp) {
+		int res [] [] 
+		return null;
+	}
+
+}

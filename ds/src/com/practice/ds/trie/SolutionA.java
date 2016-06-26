@@ -1,0 +1,118 @@
+package com.practice.ds.trie;
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class SolutionA {
+
+	public static void main(String[] args) {
+		/* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		SolutionA sol = new SolutionA();
+		Trie t = sol.new Trie();
+		List<String>inp = new ArrayList<String>();
+		while( n > 0){
+			String input = sc.nextLine();
+			if(!input.isEmpty()){
+				inp.add(input);
+				n = n-1;
+			}
+			
+			
+		}
+
+		for(String s : inp){
+			t.insert(s);
+		}
+
+		boolean res = false;
+		String sss = null;
+		for(String s : inp){
+			sss =t. search(s);
+			if(sss != null){
+				res =true;
+				break;
+			}
+		}
+		if(res){
+			System.out.println("BAD SET");
+			System.out.println(sss);
+		}
+		else{
+			System.out.println("GOOD SET");
+		}
+
+	}
+
+	private class Trie {
+
+		private class TrieNode{
+			Map<Character,TrieNode>children;
+			boolean isEndOfWord;
+			Integer preCount;
+
+			public TrieNode() {
+				//super();
+				children = new HashMap<Character,TrieNode>();
+				isEndOfWord = false;
+				preCount = 0;
+			}
+		}
+
+		private final TrieNode root;
+
+		public Trie() {
+			//super();
+			root = new TrieNode();
+		}
+
+
+		void insert(String word) {
+			TrieNode current = root;
+
+			for (int i = 0; i < word.length(); i++) {
+				char c = word.charAt(i);
+				TrieNode node = current.children.get(c);
+				if (node == null) {
+					node = new TrieNode();
+					//node.preCount = current.preCount + 1;
+					current.children.put(c, node);
+
+				} 
+				current  = node;
+
+			}
+            if(current.isEndOfWord){
+                 current.preCount = 2;
+            }
+            else{
+			current.isEndOfWord = true;
+             current.preCount = 1;
+            }
+           
+
+		}
+
+
+
+		String search(String word){
+			TrieNode current = root;
+			int c =0;
+			for(int i =0; i < word.length(); i++){
+				TrieNode node = current.children.get(word.charAt(i));
+			
+				current = node;
+                    
+			}
+			if(current.preCount >=2 && current.isEndOfWord){
+				return word;
+			}
+
+			return null;
+		}
+	}
+}

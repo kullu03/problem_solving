@@ -1,0 +1,43 @@
+package com.corejava.practice;
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        // first input string
+        String input1 = sc.nextLine();
+        String input2 = sc.nextLine();
+        // convert string to stringbuilder 
+        StringBuilder sb1 = new StringBuilder(input1);
+        StringBuilder sb2 = new StringBuilder(input2);
+        // store number of delete op
+        int c = 0;
+        for(int i =0; i< sb1.length(); i++){
+        	  if(sb2.indexOf(String.valueOf(sb1.charAt(i))) == -1){
+        		  sb1.deleteCharAt(i);
+        		  c =c+1;
+        	  }
+             
+               
+           
+        }
+          for(int k =0; k< sb2.length(); k++){
+           
+        	   if(sb1.indexOf(String.valueOf(sb2.charAt(k))) == -1){
+         		  sb2.deleteCharAt(k);
+         		  c =c+1;
+         	  }
+               
+           
+        }
+        System.out.println(""+c);
+    }
+}

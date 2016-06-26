@@ -1,0 +1,24 @@
+package com.careercup.arrays.string;
+
+public class ReverseString {
+
+	public static void main(String[] args) {
+		System.out.println(reverse("a"));
+		
+	}
+
+	private static String reverse(String str) {
+		int i = 0;
+		int j = str.length()-1;
+		char []c = str.toCharArray();
+		while(i <= j){
+			char t = str.charAt(i);
+			c[i] = str.charAt(j);
+			c[j]=t;
+			i++;
+			j--;
+		}
+		return new String(c);
+	}
+
+}

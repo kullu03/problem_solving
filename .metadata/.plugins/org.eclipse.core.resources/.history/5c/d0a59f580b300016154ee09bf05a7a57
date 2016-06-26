@@ -1,0 +1,62 @@
+package com.careercup.arrays.string;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class UniqueCharacter {
+	private static int SIZE =256;
+	public static void main(String[]args) {
+		String input = "aab";
+		System.out.println(hasUniqueChars1(input));
+		System.out.println(hasUniqueChars2(input));
+		System.out.println(hasUniqueChars3(input));
+	}
+
+	//This method is efficient but using additional data structure.
+	private static boolean hasUniqueChars1(String input) {
+		if(input == null || input.trim().length()==0){
+			return false;
+		}
+		Set<Character>charSet = new HashSet<Character>();
+		for(int i =0; i < input.length(); i++){
+			charSet.add(input.charAt(i));
+		}
+		return input.length() == charSet.size();
+	}
+
+	// not efficient method using O(n2) time.
+	private static boolean hasUniqueChars2(String input){
+		if(input == null || input.trim().length()==0){
+			return false;
+		}
+		for(int i = 0; i <input.length(); i++){
+			for(int j = i+1; j < input.length(); j++){
+				if(input.charAt(i)== input.charAt(j)){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	//Assuming that String input space is ASCII
+	private static boolean hasUniqueChars3(String input){
+		
+		boolean[]table = new boolean[SIZE];
+		if(input == null || input.trim().length()==0){
+			return false;
+		}
+
+		for(int i = 0; i < input.length(); i++){
+			if(table[input.charAt(i)] == false){
+				table[input.charAt(i)]  = true;
+			}
+			else{
+				return false;
+			}
+		}
+		return true;
+
+	}
+
+}

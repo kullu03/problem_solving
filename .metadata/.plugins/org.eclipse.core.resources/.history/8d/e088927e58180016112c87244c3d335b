@@ -1,8 +1,0 @@
-package com.practice.ds.trie;
-
-public class Snippet {
-	public static void main(String[] args) {
-		algorithm
-	}
-}
-

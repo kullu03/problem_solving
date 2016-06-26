@@ -1,0 +1,16 @@
+package com.careercup.arrays.string;
+
+public class RemoveDuplicates {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(removeDupes("abccdef"));
+
+	}
+
+	private static void System.out.println(removeDupes(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

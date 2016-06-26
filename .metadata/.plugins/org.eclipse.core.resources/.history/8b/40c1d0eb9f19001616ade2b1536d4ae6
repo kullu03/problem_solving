@@ -1,0 +1,19 @@
+package com.corejava.practice;
+
+public class MemberInnerClassOuter {
+	public static void main(String [] args) {
+		System.out.println("Inside: " + MemberInnerClassOuter.class );
+		
+	}
+	
+	public class MemberInnerClassInner {
+		public void main(String [] args) {
+			System.out.println("Inside: " + MemberInnerClassOuter.class );
+			
+		}
+		
+			
+	}
+	
+
+}

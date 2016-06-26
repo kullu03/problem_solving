@@ -1,0 +1,25 @@
+package com.careercup.arrays.string;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class UniqueCharacter {
+	public static void main(String[]args) {
+	 String input = "abcdefdcgh";
+		System.out.println(hasUniqueChars(input));
+	}
+
+	//This method is efficient but using extra space may be O(string.length)
+	private static boolean hasUniqueChars(String input) {
+		if(input == null || input.trim().length()==0){
+			return false;
+		}
+		Set<Character>charSet = new HashSet<Character>();
+		for(int i =0; i < input.length(); i++){
+			charSet.add(input.charAt(i));
+		}
+		return input.length() == charSet.size();
+	}
+	
+
+}

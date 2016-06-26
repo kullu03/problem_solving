@@ -1,0 +1,94 @@
+package com.practice.ds.trie;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class SuffixArray {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		
+		
+		
+		while(t >0){
+			String s1 = sc.next();
+			String s2 = sc.next();
+			s1 = s1+'a';
+			s2 = s2 +'b';
+			String s = s1+s2;
+			StringBuilder sb = new StringBuilder(s);
+			sb.reverse();
+			Map<String,Integer>map1 = new HashMap<String,Integer>();
+			List<String>v = new ArrayList<String>();
+			int [] suffixArray = new int[s.length()];
+
+			String suffix = ""; 
+			
+			for (int i = sb.length() - 1; i >= 0; i--) {
+			    suffix = sb.charAt(i) + suffix;
+			    map1.put(suffix, i);
+			    v.add(suffix);
+			}
+
+			/*for(int i = 0; i < s.length(); i++){
+				map1.put(s.substring(i,s.length()-i), i);
+				v.add(s.substring(i,s.length()-i));
+			}*/
+			int k =0;
+			Collections.sort(v);
+			for(String ss : v){
+				//System.out.println(" " + ss + "  " +map1.get(ss));
+				suffixArray[k] = map1.get(ss);
+				k = k+1;
+			}
+
+			StringBuilder res = new StringBuilder();
+
+			int pos1=0, pos2=0;
+
+			while (true)
+			{
+				if (pos1 >= (s1.length()) && pos2 >= (s2.length()))
+				{
+					break;
+				}
+				if (pos1 >= (s1.length()))
+				{
+					res.append(String.valueOf(s2.charAt(pos2)));
+					pos2++;
+					continue;
+				}
+				if (pos2 >= (s2.length()))
+				{
+					res.append(String.valueOf(s1.charAt(pos1)));
+					pos1++;
+					continue;
+				}
+				if (suffixArray[pos1] < suffixArray[s1.length() + pos2]){
+					res.append(String.valueOf(s1.charAt(pos1)));
+					pos1++;
+				}
+				else{
+					res.append(String.valueOf(s2.charAt(pos2)));
+					pos2++;
+				}
+				// res += b[pos2++];
+			}
+			
+			System.out.println(res.toString());
+			t = t-1;
+		}
+
+		
+	}
+
+}
+
+
+
+

@@ -1,0 +1,51 @@
+package com.corejava.practice;
+
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        // first input string
+        String input1 = sc.nextLine();
+        String input2 = sc.nextLine();
+        // convert string to stringbuilder 
+        StringBuilder sb1 = new StringBuilder(input1);
+        StringBuilder sb2 = new StringBuilder(input2);
+        // store number of delete op
+        int c = 0;
+        for(int i =0; i< sb1.length(); i++){
+           for(int j =0; j < sb2.length(); j++){
+               if(sb1.charAt(i) == sb2.charAt(j)){
+                   break;
+               }
+               else{
+            	   sb2.deleteCharAt(k);
+                   c = c+1;
+                   break;
+               }
+               
+           }
+        }
+          for(int k =0; k< sb2.length(); k++){
+           for(int l =0; l < sb1.length(); l++){
+               if(sb1.charAt(k) == sb2.charAt(l)){
+                   break;
+               }
+               else{
+            	   sb1.deleteCharAt(k);
+                   c = c+1;
+                   break;
+               }
+               
+           }
+        }
+        System.out.println(""+c);
+    }
+}

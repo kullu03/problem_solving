@@ -1,0 +1,15 @@
+package com.practice.graph;
+public class TrieTest {
+	// driver method to test Trie
+	static Trie t = new Trie();
+		public static void main(String [] args){
+			String [] names = {"Kuldeep","Singh","Kuld","Manu","Manjeet","Roli","abcd","abc"};
+			for(int i = 0 ; i < names.length; i++){
+				t.insert(names[i]);
+			}
+			
+			//t.printTrie();
+			System.out.println(t.search("Kuldeep"));
+		}
+
+}
