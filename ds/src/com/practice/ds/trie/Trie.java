@@ -1,8 +1,6 @@
 package com.practice.ds.trie;
-import java.util.Collection;
+
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -11,18 +9,18 @@ import java.util.Set;
 /**
  * @author Kuldeep Singh
  * 
- * insert/search/delete op in Trie
+ *         insert/search/delete op in Trie
  *
  */
 public class Trie {
 
-	private class TrieNode{
-		 Map<Character,TrieNode>children;
-		 boolean isEndOfWord;
+	private class TrieNode {
+		Map<Character, TrieNode> children;
+		boolean isEndOfWord;
 
 		public TrieNode() {
-			//super();
-			children = new HashMap<Character,TrieNode>();
+			// super();
+			children = new HashMap<Character, TrieNode>();
 			isEndOfWord = false;
 		}
 	}
@@ -30,14 +28,12 @@ public class Trie {
 	private final TrieNode root;
 
 	public Trie() {
-		//super();
 		root = new TrieNode();
 	}
 
-
 	public void insert(String word) {
 		TrieNode current = root;
-		
+
 		for (int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
 			TrieNode node = current.children.get(c);
@@ -45,21 +41,19 @@ public class Trie {
 				node = new TrieNode();
 				current.children.put(c, node);
 
-			} 
-			current  = node;
+			}
+			current = node;
 
 		}
 		current.isEndOfWord = true;
 
 	}
 
-
-
-	public boolean search(String word){
+	public boolean search(String word) {
 		TrieNode current = root;
-		for(int i =0; i < word.length(); i++){
+		for (int i = 0; i < word.length(); i++) {
 			TrieNode node = current.children.get(word.charAt(i));
-			if(node == null){
+			if (node == null) {
 				return false;
 			}
 			current = node;
@@ -68,85 +62,61 @@ public class Trie {
 		return current.isEndOfWord;
 	}
 
-	public int countForPrefix(String prefix){
-		int c =0;
+	public int countForPrefix(String prefix) {
+		int c = 0;
 		TrieNode current = root;
-		char ch = 0 ;
-		for(int i =0 ; i< prefix.length(); i++){
-			 ch = prefix.charAt(i);
+		char ch = 0;
+		for (int i = 0; i < prefix.length(); i++) {
+			ch = prefix.charAt(i);
 			TrieNode child = current.children.get(ch);
-			if(child == null)return c;
+			if (child == null)
+				return c;
 			current = child;
-			
+
 		}
-		if(current.isEndOfWord){
-			c = c+1;
+		if (current.isEndOfWord) {
+			c = c + 1;
 		}
-		//TrieNode child = current.children.get(ch);
 		Set<Character> keys = current.children.keySet();
-		Queue<Character>kk = new LinkedList<Character>();
+		Queue<Character> kk = new LinkedList<Character>();
 		kk.addAll(keys);
-		//Iterator<Character> iter = kk.iterator();
-		while( !kk.isEmpty()){
-			
-			//while (iter.hasNext()) {
-			   // System.out.println();
-			    char cc = kk.poll();
-			    TrieNode child1 = current.children.get(cc);
-				//keys.remove(cc);
-			    
-				if(child1 == null || child1.isEndOfWord){
-					c =c+1;
-				}
-				//iter.remove();
-				if(child1 != null ){
+		while (!kk.isEmpty()) {
+			char cc = kk.poll();
+			TrieNode child1 = current.children.get(cc);
+			if (child1 == null || child1.isEndOfWord) {
+				c = c + 1;
+			}
+			// iter.remove();
+			if (child1 != null) {
 				kk.addAll(child1.children.keySet());
 				current = child1;
-				}
-				
 			}
-			
-			
-		
-		
-		
-		
-		
-		
-		
+
+		}
+
 		return c;
-		
-		
-		
 	}
-	public void printTrie(){
-		if(root == null){
+
+	public void printTrie() {
+		if (root == null) {
 			return;
 		}
-		
-		Map<Character,TrieNode> children = root.children;
-		if(children == null){
-			return ;
+
+		Map<Character, TrieNode> children = root.children;
+		if (children == null) {
+			return;
 		}
-		Queue<Map<Character,TrieNode>> q = new LinkedList<Map<Character,TrieNode>>();
+		Queue<Map<Character, TrieNode>> q = new LinkedList<Map<Character, TrieNode>>();
 		q.add(root.children);
-		/*for(Map.Entry<Character, TrieNode>ee: children.entrySet()){
-			System.out.println(ee.getKey());
-			q.add(ee.getValue().children);
-			
-		}*/
-		
-		while(!q.isEmpty()){
-			Map<Character,TrieNode> child = q.poll();
+
+		while (!q.isEmpty()) {
+			Map<Character, TrieNode> child = q.poll();
 			Set<Character> myset = child.keySet();
 			System.out.println(myset.toArray(new Character[myset.size()])[0]);
 			q.add(child);
-			
-			
+
 		}
-		
+
 	}
-	
-	
 
 }
