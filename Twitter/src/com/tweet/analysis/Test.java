@@ -12,13 +12,19 @@ import twitter4j.TwitterFactory;
 
 /**
  * @author Kuldeep Singh
+ * 
+ * 
  *
  */
 public final class Test {
 	private static Logger log = Logger.getLogger(Test.class);
 	private static int numOfPages = 10;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		
+		if(args.length != 2){
+			throw new Exception("Correct Usage..UserId1 UserId2");
+		}
 
 		Twitter twitter = new TwitterFactory().getInstance();
 
@@ -28,7 +34,7 @@ public final class Test {
 		for(int page =1; page <= numOfPages ; page++){
 			List<Status> allStatus = null;
 			try {
-				allStatus = twitter.getUserTimeline("ArvindKejriwal",new Paging(page, 25));
+				allStatus = twitter.getUserTimeline(args[0],new Paging(page, 25));
 			} 
 			catch (TwitterException e) {
 				log.error("Error occured while fetching the tweets of a user..");
@@ -37,15 +43,9 @@ public final class Test {
 			if(allStatus != null){
 				for(Status status : allStatus){
 					count = count +1;
-					if(status.getText().contains("Modi") || status.getText().contains("BJP") || status.getText().contains("Center")
-							|| status.getText().contains("PMO")){
+					if(status.getText().contains(args[1])){
 						i++ ;
-					}
-					
-					if(status.getText().contains("Congress") || status.getText().contains("INC") || status.getText().contains("Sonia")
-							|| status.getText().contains("Rahul")){
-						j++ ;
-					}
+					}					
 
 				}
 
@@ -58,9 +58,9 @@ public final class Test {
 			
 		}
 		
-		System.out.println("No. of tweets done by Kejriwal :" + count);
-		System.out.println("No. of tweets in which he mentioned Modi or BJP or Center :" + i);
-		System.out.println("No. of tweets in which he mentioned Congress :" + j);
+		System.out.println("No. of tweets done by " + args[0] +  ":"  + count);
+		System.out.println("No. of tweets in which he mentioned " + args[1] + ":" + i);
+		
 
 	}
 }
