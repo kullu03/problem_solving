@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package twitter4j.examples.oauth;
+package com.tweet.analysis;
 
 import twitter4j.*;
 

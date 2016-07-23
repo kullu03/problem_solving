@@ -1,5 +1,5 @@
 
-package twitter4j.examples.oauth;
+package com.tweet.analysis;
 
 import java.util.List;
 
