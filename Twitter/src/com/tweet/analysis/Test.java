@@ -34,7 +34,7 @@ public final class Test {
 			try {
 				allStatus = twitter.getUserTimeline(args[0], new Paging(page, 25));
 			} catch (TwitterException e) {
-				log.error("Error occured while fetching the tweets of a user..");
+				log.error("Error occured while fetching the tweets of a user.. " + args[0]);
 				e.printStackTrace();
 			}
 			if (allStatus != null) {
