@@ -10,7 +10,7 @@ public class TrieTest {
 			t.insert(names[i]);
 		}
 		System.out.println(t.search("Manu"));
-		System.out.println(t.countForPrefix("abcd"));
+		System.out.println(t.countForPrefix("ab"));
 	}
 
 }

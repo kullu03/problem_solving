@@ -1,6 +1,8 @@
 package com.practice.algorithm.sorting;
 
-public class MergeSort {
+import java.util.Arrays;
+
+public class MergeSort implements Sorting{
 
 
 	
@@ -76,6 +78,23 @@ public class MergeSort {
 		}
 		
 		return finalArray;
+	}
+
+	@Override
+	public void sort(int[] arr,int start,int end) {
+		if(start < end){
+		int q = (start + end)/2;;
+		sort(arr,start,q);
+		sort(arr, q+1, end);
+		merge(Arrays.copyOf(arr, q),Arrays.copyOfRange(arr, q+1, arr.length));
+		}
+		
+	}
+
+	@Override
+	public void sort(int[] arr) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

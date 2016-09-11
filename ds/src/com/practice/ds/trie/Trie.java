@@ -13,27 +13,13 @@ import java.util.Set;
  *
  */
 public class Trie {
-
-	private class TrieNode {
-		Map<Character, TrieNode> children;
-		boolean isEndOfWord;
-
-		public TrieNode() {
-			// super();
-			children = new HashMap<Character, TrieNode>();
-			isEndOfWord = false;
-		}
-	}
-
 	private final TrieNode root;
-
 	public Trie() {
 		root = new TrieNode();
 	}
 
 	public void insert(String word) {
 		TrieNode current = root;
-
 		for (int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
 			TrieNode node = current.children.get(c);
@@ -86,7 +72,7 @@ public class Trie {
 			if (child1 == null || child1.isEndOfWord) {
 				c = c + 1;
 			}
-			// iter.remove();
+	
 			if (child1 != null) {
 				kk.addAll(child1.children.keySet());
 				current = child1;
@@ -117,6 +103,17 @@ public class Trie {
 
 		}
 
+	}
+	
+
+	private class TrieNode {
+		Map<Character, TrieNode> children;
+		boolean isEndOfWord;
+
+		private TrieNode() {
+			children = new HashMap<Character, TrieNode>();
+			isEndOfWord = false;
+		}
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.careercup.recursion;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +37,7 @@ public class SubsetProblem {
 		s.add(4);
 		s.add(5);
 		Set<Set<Integer>> allSets = powerSet(s);
+		System.out.println(allSets.size());
 		for(Set<Integer> in : allSets){
 			System.out.print("{");
 			for(Integer i : in){

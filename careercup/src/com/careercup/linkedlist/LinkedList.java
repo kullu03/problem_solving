@@ -50,10 +50,7 @@ public class LinkedList {
 	}
 	
 public static int getNthElement(Node head,int n){
-	
-	
 	return 0;
-	
 }
 
 public static void main(String [] args){

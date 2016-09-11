@@ -1,6 +1,8 @@
 package com.intw.practice.tree;
 
-
+import java.util.ArrayDeque;
+import java.util.Queue;
+import java.util.Stack;
 
 public class BoundaryTraversal {
 
@@ -20,7 +22,8 @@ public class BoundaryTraversal {
 		bt.root.left.right.right = new Node(14);
 		bt.root.left.right.right.left = new Node(74);
 		//bt.printLeaves(bt.root);
-		bt.printBoundaryTraversal();
+		//bt.printBoundaryTraversal();
+		bt.levelWiseSum(bt.root);
 	}
 }
 
@@ -93,6 +96,50 @@ class BinaryTree {
 		System.out.print(root.data + " ");
 		}
 		printLeaves(root.right);
+	}
+	// this will print level wise sum of BT. Given the node of tree
+	
+	public void levelWiseSum(Node root){
+		
+		// root is null 
+		if(root == null){
+			System.out.println("Root is null .. not a valid input");
+			return;
+		}
+
+		Queue<Node> queue= new ArrayDeque<>();
+		// tree exist 
+		// push the current node in stack 
+		// take size of stack 
+		// while size is not 0
+		
+		queue.add(root);
+		
+		while( !queue.isEmpty()){
+			int currentStackSize = queue.size();
+			int levelSum = 0;
+			while(currentStackSize != 0){
+				Node temp = queue.remove();
+				levelSum = levelSum + temp.data;
+
+				if(temp.left != null){
+					queue.add(temp.left);			
+				}
+
+				// if right node is not null push it into in the stack
+				if(temp.right != null){
+					queue.add(temp.right);
+				}
+				
+				currentStackSize  = currentStackSize  -1;
+			}
+			System.out.println(levelSum);
+		}
+		
+		
+		
+		
+		
 	}
 
 }
