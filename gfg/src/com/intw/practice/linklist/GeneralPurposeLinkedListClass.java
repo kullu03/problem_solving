@@ -1,6 +1,6 @@
 package com.intw.practice.linklist;
 
-public class ReverseList {
+public class GeneralPurposeLinkedListClass {
 	public static void main(String [] args) {
 		LinkedList<String>ll = new LinkedList<String>(new Node<String>("Kuldeep"));
 		ll.addNodeAtHead("Singh");
@@ -121,6 +121,84 @@ class LinkedList<E>{
 		// now recurse with left list.
 			recursiveReverse(newHead,currentHead);
 
+	}
+	
+	/**
+	 * Given two linked lists that represent two large positive numbers.
+	 * Subtract the smaller number from larger one and return the difference as
+	 * a linked list. Note that the input lists may be in any order, but we
+	 * always need to subtract smaller from larger one.
+	 * 
+	 * It may be assumed that there are no extra leading zeros in input lists.
+	 * 
+	 * Examples
+	 * 
+	 * Input : l1 = 1 -> 0 -> 0 -> NULL, l2 = 1 -> NULL Output : 0->9->9->NULL
+	 * 
+	 * Input : l1 = 1 -> 0 -> 0 -> NULL, l2 = 1 -> NULL Output : 0->9->9->NULL
+	 * 
+	 * Input : l1 = 7-> 8 -> 6 -> NULL, l2 = 7 -> 8 -> 9 NULL Output : 3->NULL
+	 * 
+	 * 
+	 * 
+	 */
+	
+	public LinkedList<Integer> SubtractTwoList(LinkedList<Integer> firstList,LinkedList<Integer> secondList){
+		// Brute force approach
+		
+		if(firstList == null && secondList == null){
+			System.out.println("Not valid input...");
+		}
+		
+		
+		int subtractedResult = Math.abs(getNumberFromList(firstList) - getNumberFromList(secondList));
+		
+		return makeLinkedListFromInteger(subtractedResult);
+		
+		
+		
+		
+	}
+
+	private LinkedList<Integer> makeLinkedListFromInteger(int num) {
+		int remainder = num % 10;
+		num = num / 10;
+		LinkedList<Integer> ll = new LinkedList<Integer>(new Node<Integer>(remainder));
+		while (num > 0) {
+			remainder = num % 10;
+			num = num / 10;
+			/*ll.addNodeAtTail(remainder);*/
+			ll.addNodeAtHead(remainder);
+		}
+
+		return ll;
+	}
+
+	
+	private void addNodeAtTail(E e) {
+		Node<E> current = this.head;
+		if(this.head == null){
+			this.head = new Node<E>(e);
+			return;
+		}
+		while (current.next != null) {
+			current = current.next;
+		}
+		current.next = new Node<E>(e);
+	}
+
+	private int getNumberFromList(LinkedList<Integer> linkedList) {
+		if (linkedList == null || linkedList.head == null)
+			return 0;
+
+		Node<Integer> iterator = linkedList.head;
+		StringBuilder resultString = new StringBuilder();
+		while (iterator != null) {
+			resultString.append(iterator.data);
+			iterator = iterator.next;
+		}
+
+		return Integer.valueOf(resultString.toString());
 	}
 
 }
