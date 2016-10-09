@@ -1,16 +1,13 @@
 package com.practice.graph;
 import java.util.HashMap;
 import java.util.Map;
-
 /**
- * Date 04/25/2016
- * @author Tushar Roy
- *
- * Insert/delete/search into trie data structure
- *
- * Reference
- * https://en.wikipedia.org/wiki/Trie
- */
+
+Trie impl 
+
+**/
+
+
 public class Trie {
 
     private class TrieNode {
