@@ -2,12 +2,12 @@ package com.careercup.recursion;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 /**
  * 
- * @author Kuldeep Singh
  * 
  *         This is the problem number 8.3 from career cup book
  * 
@@ -25,6 +25,8 @@ import java.util.Set;
  *         The set of subsets of {1} is {{}, {1}} For {1, 2}, take {{}, {1}},
  *         add 2 to each subset to get {{2}, {1, 2}} and take the union with
  *         {{}, {1}} to get {{}, {1}, {2}, {1, 2}} Repeat till you reach n
+ *         
+ *          @author Kuldeep Singh
  */
 
 public class SubsetProblem {
@@ -36,7 +38,7 @@ public class SubsetProblem {
 		s.add(3);
 		s.add(4);
 		s.add(5);
-		Set<Set<Integer>> allSets = powerSet(s);
+		Set<Set<Integer>> allSets = powerSetIterative(s);
 		System.out.println(allSets.size());
 		for(Set<Integer> in : allSets){
 			System.out.print("{");
@@ -50,22 +52,41 @@ public class SubsetProblem {
 	}
 	
 	public static Set<Set<Integer>> powerSet(Set<Integer> originalSet) {
-        Set<Set<Integer>> sets = new HashSet<Set<Integer>>();
+        Set<Set<Integer>> powerSet = new HashSet<Set<Integer>>();
         if (originalSet.isEmpty()) {
-            sets.add(new HashSet<Integer>());
-            return sets;
+            powerSet.add(new HashSet<Integer>());
+            return powerSet;
         }
         List<Integer> list = new ArrayList<Integer>(originalSet);
-        Integer head = list.get(0);
+        Integer firstElement = list.get(0);
         Set<Integer> rest = new HashSet<Integer>(list.subList(1, list.size()));
-        for (Set<Integer> set : powerSet(rest)) {
+        for (Set<Integer> element : powerSet(rest)) {
             Set<Integer> newSet = new HashSet<Integer>();
-            newSet.add(head);
-            newSet.addAll(set);
-            sets.add(newSet);
-            sets.add(set);
+            newSet.add(firstElement);
+            newSet.addAll(element);
+            powerSet.add(newSet);
+            powerSet.add(element);
         }
-        return sets;
+        return powerSet;
     }
+	
+	public static Set<Set<Integer>> powerSetIterative(Set<Integer> originalSet) {
+		Set<Set<Integer>> powerSet = new HashSet<Set<Integer>>();
+		powerSet.add(new HashSet<>());
+
+		for (Integer element : originalSet) {
+			Set<Integer> newSet = new HashSet<Integer>();
+			newSet.add(element);
+			powerSet.add(newSet);
+			Set<Set<Integer>> prevPowerSet = new HashSet<Set<Integer>>(powerSet);
+			for (Iterator<Set<Integer>> iterator = prevPowerSet.iterator(); iterator.hasNext();) {
+				Set<Integer> existingSet = new HashSet<Integer>(iterator.next());
+				existingSet.add(element);
+				powerSet.add(existingSet);
+			}
+		}
+
+		return powerSet;
+	}
 
 }
