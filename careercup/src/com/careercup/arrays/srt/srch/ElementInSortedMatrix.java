@@ -81,8 +81,8 @@ public class ElementInSortedMatrix {
 		
 		int colIndex = 0;
 		int rowIndex = 0;
-		while(rowIndex >= 0 && colIndex >= 0){
-			if(matrix[colIndex][rowIndex] == num) return true;
+		while(rowIndex >= row && col >= 0){
+			if(matrix[col][rowIndex] == num) return true;
 			else if( num > matrix[colIndex][row]){
 				rowIndex = rowIndex +1;
 			}
