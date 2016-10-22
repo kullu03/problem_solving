@@ -116,9 +116,9 @@ class BinaryTree {
 		queue.add(root);
 		
 		while( !queue.isEmpty()){
-			int currentStackSize = queue.size();
+			int currentQueueSize = queue.size();
 			int levelSum = 0;
-			while(currentStackSize != 0){
+			while(currentQueueSize != 0){
 				Node temp = queue.remove();
 				levelSum = levelSum + temp.data;
 
@@ -131,7 +131,7 @@ class BinaryTree {
 					queue.add(temp.right);
 				}
 				
-				currentStackSize  = currentStackSize  -1;
+				currentQueueSize  = currentQueueSize  -1;
 			}
 			System.out.println(levelSum);
 		}
