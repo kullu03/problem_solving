@@ -1,7 +1,9 @@
 package com.intw.practice.backtracking;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 public class Permutation {
@@ -13,7 +15,7 @@ public class Permutation {
 			return permuation;
 		}
 		
-		// push intial input into stack
+		// push initial input into stack
 		Stack<PermHolder> s = new Stack<>();
 		s.push(new PermHolder(input, ""));
 	
@@ -34,6 +36,42 @@ public class Permutation {
 	}
 
 
+	public static void getPermuation(String input) {
+
+		if(input == null || input.isEmpty()){
+			return;
+		}
+		
+		Set<String> permuations = new HashSet<String>();
+		
+		for(int i = 0; i < input.length(); i++){
+			StringBuilder sb = new StringBuilder();
+			sb.append(input.charAt(i));
+			permuatationUtil(sb.toString(),input.substring(0,i) + input.substring(i+1),permuations);
+		}
+		for(String s : permuations){
+			System.out.print(s + " ");
+		}
+	
+
+	}
+
+	private static void permuatationUtil(String out, String in, Set<String> permuations) {
+
+		if(in.length() <= 1){
+			out = out + in;
+			permuations.add(out);
+			return;
+		}
+		for(int i = 0; i < in.length(); i++){
+			StringBuilder sb = new StringBuilder(out);
+			sb.append(in.charAt(i));
+			permuatationUtil(sb.toString(),in.substring(0,i) + in.substring(i+1),permuations);
+
+		}
+
+
+	}
 
 
 	private static void getStack(Stack<PermHolder> s, PermHolder ph) {
@@ -66,11 +104,13 @@ public class Permutation {
 	public static void main(String[] args) {
 		/*Stack<PermHolder> s = new Stack<>();
 		getStack(s,new PermHolder("abcd", ""));*/
-		List<String> kk = getPermutationForString("abcdefg");
+		/*List<String> kk = getPermutationForString("abcdefg");
 		for(String s : kk){
 			System.out.print(s + ",");
 		}
-		System.out.println(kk.size());
+		System.out.println(kk.size());*/
+
+		getPermuation("abcd");
 	}
 
 }

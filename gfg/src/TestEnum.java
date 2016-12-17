@@ -8,7 +8,7 @@ public class TestEnum {
 		
 		for(Operation op : Operation.values()){
 			
-			System.out.println(op.apply(x, y));
+			System.out.println( op.name() + " " + op.apply(x, y));
 		}
 
 	}

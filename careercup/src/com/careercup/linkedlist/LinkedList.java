@@ -53,6 +53,46 @@ public static int getNthElement(Node head,int n){
 	return 0;
 }
 
+public void reverseListAlt(Node s){
+	if(s == null || s.next == null)return;
+	
+	Node t = s.next;
+	reverseListAltUtil(s,s);
+	this.head = t;
+	
+}
+
+private void reverseListAltUtil(Node s,Node p) {
+	
+	if(s== null || s.next == null) return ;
+	
+	Node temp = s.next.next;
+	s.next.next = s;
+	p.next = s.next;
+	s.next = temp;
+	p = s;
+	
+	reverseListAltUtil(s.next,p);
+	
+	
+}
+
+
+public void reverseList(Node current,Node prev){
+	if(current == null){
+		this.head = prev;;
+		return;
+	}
+	
+	Node nextCurrent = current.next;
+	current.next = prev;
+	prev = current;
+	
+	reverseList(nextCurrent,prev);
+	
+	
+}
+
 public static void main(String [] args){
 	
 	Node head = new LinkedList().new Node(1);
@@ -62,11 +102,11 @@ public static void main(String [] args){
 	list.appendToTail(4);
 	list.appendToTail(5);
 	list.appendToTail(6);
-	list.appendToTail(7);
-	
-	LinkedList list1 = new LinkedList(null);
-	//print the list
-	list1.addToHead(1);
+	//list.appendToTail(7);
+
+	printList(list.head);
+	System.out.println("After reverse alt");
+	list.reverseList(list.head, null);
 	printList(list.head);
 	
 	

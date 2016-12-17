@@ -6,13 +6,12 @@ import java.util.Map;
 public class SpellCounter {
 
 	public static void main(String[] args) {
-
+		
 		System.out.println(getSpellCount2("100"));
 		System.out.println(getSpellCount2("11112"));
 		System.out.println(getSpellCount2("8884441100"));
 		System.out.println(getSpellCount2("12345"));
 		System.out.println(getSpellCount2("11111"));
-
 	}
 
 	/*

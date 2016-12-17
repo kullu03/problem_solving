@@ -1,44 +1,47 @@
 package com.intw.practice.linklist;
 
 public class GeneralPurposeLinkedListClass {
-	public static void main(String [] args) {
-		LinkedList<String>ll = new LinkedList<String>(new Node<String>("Kuldeep"));
+	public static void main(String[] args) {
+		LinkedList<String> ll = new LinkedList<String>(new Node<String>("Kuldeep"));
 		ll.addNodeAtHead("Singh");
 		ll.addNodeAtHead("Sultanpur");
-		/*ll.addNodeAtHead("Saini");
+		ll.addNodeAtHead("Saini");
 		ll.addNodeAtHead("Manu");
-		ll.addNodeAtHead("At");*/
-		//ll.addNodeAtHead("Bangalore");
-		
+		ll.addNodeAtHead("At");
+		ll.addNodeAtHead("Bangalore");
+
 		ll.printList();
 		ll.reverse();
 		System.out.println("List reveresed!!!");
 		ll.printList();
+		System.out.println(ll.isLinkedListHasLoop(ll));
+
+		ll.deleteLinkedList();
+		System.out.println(ll.head.data);
 	}
 
 }
 
-
-class Node<E>{
+class Node<E> {
 	E data;
 	Node<E> next;
 
-	public Node(E data){
+	public Node(E data) {
 		this.data = data;
-		this.next = null;		
+		this.next = null;
 	}
 }
 
-class LinkedList<E>{
+class LinkedList<E> {
 	Node<E> head;
 
-	public LinkedList(Node<E>node){
+	public LinkedList(Node<E> node) {
 		this.head = node;
 	}
 
-	public void addNodeAtHead(E data){
+	public void addNodeAtHead(E data) {
 		Node<E> head = this.head;
-		if(head == null){
+		if (head == null) {
 			this.head = new Node<E>(data);
 			return;
 		}
@@ -55,39 +58,36 @@ class LinkedList<E>{
 
 	}
 
-	public void printList(){
+	public void printList() {
 		Node<E> iterator = this.head;
-		while(iterator != null){
+		while (iterator != null) {
 			System.out.println(iterator.data);
 			iterator = iterator.next;
 		}
 	}
 
-	public void reverse(){
+	public void reverse() {
 
 		Node<E> oldHead = this.head;
 		Node<E> newHead = null;
 
-		if(oldHead == null){
+		if (oldHead == null) {
 			System.out.println("Given linked list is empty..");
 			return;
 		}
 
-		while(oldHead != null){
+		while (oldHead != null) {
 
-		/*	// if this is first node then
-			if(newHead == null){
-				newHead = oldHead;
-				oldHead = oldHead.next;
-				newHead.next = null;
-			}
-			else{*/
-				Node<E> temp = oldHead;
-				oldHead = oldHead.next;
-				temp.next = newHead;
-				newHead = temp;
+			/*
+			 * // if this is first node then if(newHead == null){ newHead =
+			 * oldHead; oldHead = oldHead.next; newHead.next = null; } else{
+			 */
+			Node<E> temp = oldHead;
+			oldHead = oldHead.next;
+			temp.next = newHead;
+			newHead = temp;
 
-			//}
+			// }
 		}
 		this.head = newHead;
 
@@ -95,34 +95,38 @@ class LinkedList<E>{
 
 	/**
 	 * 
-	 * @param newHead is the head node of linked list of after reverse the linked list.
-	 * @param currentHead is the current head of given linked list.
+	 * @param newHead
+	 *            is the head node of linked list of after reverse the linked
+	 *            list.
+	 * @param currentHead
+	 *            is the current head of given linked list.
 	 */
-	public void recursiveReverse(Node<E>newHead,Node<E>currentHead){
+	public void recursiveReverse(Node<E> newHead, Node<E> currentHead) {
 
-		// base condition 
-		if(currentHead == null)return;
-		
+		// base condition
+		if (currentHead == null)
+			return;
+
 		// Inductive step..
-		
+
 		// take currentHead in temp node
-			Node<E>temp = currentHead;
+		Node<E> temp = currentHead;
 		// increment currentHead to the next node
-			currentHead = currentHead.next;
-			
+		currentHead = currentHead.next;
+
 		// link the current node to the already reversed linked list.
-			temp.next = newHead;
-			
-		// make temp node new head.	
-			newHead = temp;
+		temp.next = newHead;
+
+		// make temp node new head.
+		newHead = temp;
 		// make it head.
-			this.head = newHead;
-			
+		this.head = newHead;
+
 		// now recurse with left list.
-			recursiveReverse(newHead,currentHead);
+		recursiveReverse(newHead, currentHead);
 
 	}
-	
+
 	/**
 	 * Given two linked lists that represent two large positive numbers.
 	 * Subtract the smaller number from larger one and return the difference as
@@ -142,22 +146,18 @@ class LinkedList<E>{
 	 * 
 	 * 
 	 */
-	
-	public LinkedList<Integer> SubtractTwoList(LinkedList<Integer> firstList,LinkedList<Integer> secondList){
+
+	public LinkedList<Integer> SubtractTwoList(LinkedList<Integer> firstList, LinkedList<Integer> secondList) {
 		// Brute force approach
-		
-		if(firstList == null && secondList == null){
+
+		if (firstList == null && secondList == null) {
 			System.out.println("Not valid input...");
 		}
-		
-		
+
 		int subtractedResult = Math.abs(getNumberFromList(firstList) - getNumberFromList(secondList));
-		
+
 		return makeLinkedListFromInteger(subtractedResult);
-		
-		
-		
-		
+
 	}
 
 	private LinkedList<Integer> makeLinkedListFromInteger(int num) {
@@ -167,17 +167,16 @@ class LinkedList<E>{
 		while (num > 0) {
 			remainder = num % 10;
 			num = num / 10;
-			/*ll.addNodeAtTail(remainder);*/
+			/* ll.addNodeAtTail(remainder); */
 			ll.addNodeAtHead(remainder);
 		}
 
 		return ll;
 	}
 
-	
 	private void addNodeAtTail(E e) {
 		Node<E> current = this.head;
-		if(this.head == null){
+		if (this.head == null) {
 			this.head = new Node<E>(e);
 			return;
 		}
@@ -199,6 +198,66 @@ class LinkedList<E>{
 		}
 
 		return Integer.valueOf(resultString.toString());
+	}
+
+	/*
+	 * 
+	 * 
+	 * 
+	 */
+
+	public boolean isLinkedListHasLoop(LinkedList<E> ll) {
+
+		if (ll == null || ll.head == null) {
+			return false;
+		}
+
+		// list has only one element
+
+		if (ll.head.next == null) {
+			return false;
+		}
+
+		Node<E> slow = ll.head;
+		Node<E> fast = slow;
+
+		while (slow != null && fast != null && fast.next != null) {
+
+			slow = slow.next;
+			fast = fast.next.next;
+
+			if (slow == fast) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	public Node<E> deleteLinkedList(Node<E> head) {
+		if (head == null) {
+			 return null;
+		}
+		Node<E> temp = head.next;
+		head = null;
+		return deleteLinkedList(temp);
+	}
+	
+	public Node<E> deleteLinkedList() {
+		if (this.head == null) {
+			 return null;
+		}
+		
+		Node<E> curr = this.head.next;
+		this.head = null;
+		while(curr != null){
+			Node <E> temp = curr;
+			curr = curr.next;
+			temp = null;
+			
+		}
+		
+		return null;
 	}
 
 }

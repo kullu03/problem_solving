@@ -12,7 +12,7 @@ public class BoundaryTraversal {
 		// 20 8 4 10 14 25 22
 		//20 8 4 10 14 25 22 
 		//20 8 4 10 14 25 22
-		BinaryTree bt = new BinaryTree(new Node(20));
+		BinaryTree1 bt = new BinaryTree1(new Node(20));
 		bt.root.left = new Node(8);
 		bt.root.right = new Node(22);
 		bt.root.right.right = new Node(25);
@@ -39,10 +39,10 @@ class Node {
 	}
 }
 
-class BinaryTree {
+class BinaryTree1 {
 	Node root;
 
-	public BinaryTree(Node root) {
+	public BinaryTree1(Node root) {
 		this.root = root;
 	}
 
